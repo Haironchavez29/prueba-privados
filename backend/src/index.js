@@ -10,8 +10,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 //Cors middleware
-app.use(cors());
-app.use(express.json());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*",
+    credentials: true,
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+  })
+);
 
 // Routes
 app.use("/api/solicitudes", solicitudRoutes);
