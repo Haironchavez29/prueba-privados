@@ -9,18 +9,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-//Cors middleware
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "*",
-    credentials: true,
-    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-  })
-);
-
+app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use("/api/solicitudes", solicitudRoutes);
 
 app.get("/api/health", (req, res) => {
